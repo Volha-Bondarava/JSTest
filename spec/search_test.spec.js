@@ -24,13 +24,15 @@ describe("test", function () {
         console.log("Количество результатов: " + number);
 
         let isOk = false;
-        let results = [];
-        results = await driver.findElements(By.xpath("//h3"));
-        //isOk = (result.getAttribute("class").indexOf("iTechArt") !== -1);
-        map(results, e => e.getText())
+        let results = await driver.findElements(By.xpath("//h3"));
+/*        map(results, e => e.getText())
             .then(function(value) {
                 isOk = value.indexOf("iTechArt") !== -1;
                 console.log(value);
+            });*/
+        map(results, e => e.getText())
+            .then(function(values) {
+                console.log(values);
             });
         expect(isOk).toBe(true);
     });
