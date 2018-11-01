@@ -1,5 +1,6 @@
 const {Key, By, until} = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver');
+var map = webdriver.promise.map;
 
 describe("test", function () {
     let driver;
@@ -24,15 +25,13 @@ describe("test", function () {
 
         let isOk = false;
         let results = [];
-        setTimeout(async function () {
-            //results = await driver.findElements(By.xpath("//*[@class='g']"));
-            results = await driver.findElements(By.xpath("//h3"));
-        }, 10000);
-        results.forEach(result => {
-            //isOk = (result.getAttribute("class").indexOf("iTechArt") !== -1);
-            //console.log(result.findElement(By.xpath("//h3")).getText());
-            console.log(result.getText());
-        });
-        //expect(isOk).toBe(true);
+        results = await driver.findElements(By.xpath("//h3"));
+        //isOk = (result.getAttribute("class").indexOf("iTechArt") !== -1);
+        map(results, e => e.getText())
+            .then(function(value) {
+                isOk = value.indexOf("iTechArt") !== -1;
+                console.log(value);
+            });
+        expect(isOk).toBe(true);
     });
 });
