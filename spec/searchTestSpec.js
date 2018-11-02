@@ -1,7 +1,7 @@
 const {Key, By, until} = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver');
 
-describe("test", function () {
+xdescribe("Test without Page Object", function () {
     let driver;
 
     beforeAll(async function () {
@@ -12,10 +12,10 @@ describe("test", function () {
         await driver.quit();
     });
 
-    it('Google Search', async function () {
+    it('Search Test', async function () {
         driver.get('http://google.by');
         await driver.findElement(By.name('q')).sendKeys('iTechArt', Key.RETURN);
-        driver.wait(until.titleIs('iTechArt - Пошук Google'), 5000);
+        driver.wait(until.titleIs('iTechArt - Пошук Google'));
 
         let text = await driver.findElement(By.id('resultStats')).getText();
         text = text.substring(0, text.length - 11);
