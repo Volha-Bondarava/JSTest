@@ -5,7 +5,7 @@ describe("Test without Page Object", function () {
     let driver;
 
     beforeAll(async function () {
-        driver = await new webdriver.Builder().forBrowser("chrome").build();
+        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
     });
 
     afterAll(async function () {
@@ -26,7 +26,6 @@ describe("Test without Page Object", function () {
         values.splice(-1, 1);
         values.forEach(async function (element) {
             let result = await element.getText();
-            console.log(result);
             expect(result.includes("iTechArt")).toBeTruthy();
         });
     });

@@ -30,8 +30,8 @@ GoogleSearchPage.prototype.getQuantityOfSearchResults = async function() {
     return parseInt(text.replace(/\D+/g, ""));
 };
 
-GoogleSearchPage.prototype.getSearchResults = function() {
-    let results = this.driver.findElements(this.searchResults);
+GoogleSearchPage.prototype.getSearchResults = async function() {
+    let results = await this.driver.findElements(this.searchResults);
     results.splice(-1, 1);
     return results;
 };
