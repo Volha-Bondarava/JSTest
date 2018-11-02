@@ -1,6 +1,5 @@
 const {Key, By, until} = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver');
-var map = webdriver.promise.map;
 
 describe("test", function () {
     let driver;
@@ -23,17 +22,10 @@ describe("test", function () {
         let number = parseInt(text.replace(/\D+/g, ""));
         console.log("Количество результатов: " + number);
 
-        let isOk = false;
-        let results = await driver.findElements(By.xpath("//h3"));
-/*        map(results, e => e.getText())
-            .then(function(value) {
-                isOk = value.indexOf("iTechArt") !== -1;
-                console.log(value);
-            });*/
-        map(results, e => e.getText())
-            .then(function(values) {
-                console.log(values);
-            });
-        expect(isOk).toBe(true);
+        let values = await driver.findElements(By.xpath("//h3"));
+        values.forEach(async function (element) {
+            let result = await element.getText();
+            expect(result.includes("iTechArt")).toBeTruthy();
+        });
     });
 });
