@@ -1,7 +1,7 @@
 const {Key, By, until} = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver');
 
-xdescribe("Test without Page Object", function () {
+describe("Test without Page Object", function () {
     let driver;
 
     beforeAll(async function () {
@@ -23,8 +23,10 @@ xdescribe("Test without Page Object", function () {
         console.log("Количество результатов: " + number);
 
         let values = await driver.findElements(By.xpath("//h3"));
+        values.splice(-1, 1);
         values.forEach(async function (element) {
             let result = await element.getText();
+            console.log(result);
             expect(result.includes("iTechArt")).toBeTruthy();
         });
     });

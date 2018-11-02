@@ -16,10 +16,11 @@ describe('Test with Page Object', function () {
 
     it('Search Test', async function () {
         googlePage.open();
-        await googlePage.search('iTechArt');
-        let number = googlePage.getQuantityOfSearchResults();
-        console.log(`There is about  ${number} results.`);
-        let results = googlePage.getSearchResults();
+        await googlePage.typeSearchQuery('iTechArt');
+        await googlePage.clickSearchButton();
+        let number = await googlePage.getQuantityOfSearchResults();
+        console.log(`There is about ${number} results.`);
+        let results = await googlePage.getSearchResults();
         results.forEach(async function (element) {
             let result = await element.getText();
             expect(result.includes("iTechArt")).toBeTruthy();

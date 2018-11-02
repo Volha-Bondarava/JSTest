@@ -7,25 +7,33 @@ GoogleSearchPage = function GoogleSearchPage(driver) {
     this.searchField = webdriver.By.name('q');
     this.resultStats = webdriver.By.id('resultStats');
     this.searchResults = webdriver.By.xpath('//h3');
+    this.searchButton = webdriver.By.name('btnK');
 };
 
 GoogleSearchPage.prototype.open = function () {
     return this.driver.get(this.url);
 };
 
-GoogleSearchPage.prototype.search = async function (text) {
-    await this.driver.findElement(this.searchField).sendKeys(text, Key.RETURN);
-    return this.driver.wait(until.titleIs(`${text} - Пошук Google`));
+GoogleSearchPage.prototype.typeSearchQuery = function (text) {
+    return this.driver.findElement(this.searchField).sendKeys(text);
+};
+
+GoogleSearchPage.prototype.clickSearchButton = async function() {
+    await this.driver.findElement(this.searchButton).click();
+    this.driver.wait(until.titleIs('iTechArt - Пошук Google'));
+    return this;
 };
 
 GoogleSearchPage.prototype.getQuantityOfSearchResults = async function() {
-    let number = await this.driver.findElement(this.resultStats).getText();
-    number = number.substring(0, number.length - 11);
-    return number;
+    let text = await this.driver.findElement(By.id('resultStats')).getText();
+    text = text.substring(0, text.length - 11);
+    return parseInt(text.replace(/\D+/g, ""));
 };
 
-GoogleSearchPage.prototype.getSearchResults = async function() {
-    return await this.driver.findElements(this.searchResults);
+GoogleSearchPage.prototype.getSearchResults = function() {
+    let results = this.driver.findElements(this.searchResults);
+    results.splice(-1, 1);
+    return results;
 };
 
 module.exports = GoogleSearchPage;
