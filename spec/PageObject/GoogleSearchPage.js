@@ -1,4 +1,4 @@
-const {Key, By, until} = require('selenium-webdriver');
+const {By, until} = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver');
 
 GoogleSearchPage = function GoogleSearchPage(driver) {

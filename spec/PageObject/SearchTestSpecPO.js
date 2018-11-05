@@ -6,7 +6,7 @@ describe('Test with Page Object', function () {
     let googlePage;
 
     beforeAll(function () {
-        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+        driver = new webdriver.Builder().forBrowser('chrome').build();
         googlePage = new GoogleSearchPage(driver);
     });
 

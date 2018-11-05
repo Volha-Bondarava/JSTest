@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "jasmine-expect": "^3.8.4",
-    "selenium-webdriver": "latest"
+    "selenium-webdriver": "latest",
+    "webdriverio": "^4.14.0"
   },
   "devDependencies": {
     "jasmine": "^3.3.0"

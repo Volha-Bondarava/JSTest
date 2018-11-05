@@ -4,8 +4,8 @@ let webdriver = require('selenium-webdriver');
 describe("Test without Page Object", function () {
     let driver;
 
-    beforeAll(async function () {
-        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+    beforeAll(function () {
+        driver = new webdriver.Builder().forBrowser('chrome').build();
     });
 
     afterAll(async function () {
