@@ -5,8 +5,8 @@ describe('Test with Page Object', function () {
     let driver;
     let googlePage;
 
-    beforeAll(function () {
-        driver = new webdriver.Builder().forBrowser('chrome').build();
+    beforeAll(async function () {
+        driver = await new webdriver.Builder().forBrowser('chrome').build();
         googlePage = new GoogleSearchPage(driver);
     });
 
@@ -15,7 +15,7 @@ describe('Test with Page Object', function () {
     });
 
     it('Search Test', async function () {
-        googlePage.open();
+        await googlePage.open();
         await googlePage.typeSearchQuery('iTechArt');
         await googlePage.clickSearchButton();
         let number = await googlePage.getQuantityOfSearchResults();

@@ -20,8 +20,7 @@ GoogleSearchPage.prototype.typeSearchQuery = function (text) {
 
 GoogleSearchPage.prototype.clickSearchButton = async function() {
     await this.driver.findElement(this.searchButton).click();
-    this.driver.wait(until.titleIs('iTechArt - Пошук Google'));
-    return this;
+    return this.driver.wait(until.titleIs('iTechArt - Пошук Google'));
 };
 
 GoogleSearchPage.prototype.getQuantityOfSearchResults = async function() {
