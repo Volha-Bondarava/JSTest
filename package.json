@@ -2,16 +2,16 @@
   "name": "test",
   "version": "1.0.0",
   "scripts": {
-    "test": "node node_modules/jasmine/bin/jasmine",
-    "debug": "node --inspect node_modules/jasmine/bin/jasmine"
+    "test": "node node_modules/jasmine/bin/jasmine"
   },
   "dependencies": {
     "jasmine-expect": "^3.8.4",
     "selenium-node-webdriver": "^0.1.2",
-    "selenium-webdriver": "latest",
-    "webdriverio": "^4.14.0"
+    "selenium-webdriver": "latest"
   },
   "devDependencies": {
-    "jasmine": "^3.3.0"
+    "jasmine": "^3.3.0",
+    "selenium-node-webdriver": "^0.1.2",
+    "selenium-webdriver": "latest"
   }
 }
