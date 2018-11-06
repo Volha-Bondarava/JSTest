@@ -12,8 +12,10 @@ class GoogleSearchPage {
     this.searchButton = webdriver.By.name('btnK')
   };
 
-  open () {
-    return this.driver.get(this.url)
+  async open () {
+    this.driver.get(this.url)
+    await this.driver.wait(until.elementLocated(By.name('q')), 8000)
+    return this
   };
 
   typeSearchQuery (text) {
@@ -22,7 +24,8 @@ class GoogleSearchPage {
 
   async clickSearchButton () {
     await this.driver.findElement(this.searchButton).click()
-    return this.driver.wait(until.titleIs('iTechArt - Пошук Google'))
+    await this.driver.wait(until.elementLocated(By.id('resultStats')))
+    return
   };
 
   async getQuantityOfSearchResults () {

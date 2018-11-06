@@ -7,19 +7,16 @@ describe('Test with Page Object', function () {
   let googlePage
 
   beforeAll(async function () {
-    driver = await new webdriver.Builder().forBrowser('chrome').build()
-    googlePage = new GoogleSearchPage(driver)
+    this.driver = await new webdriver.Builder().forBrowser('chrome').build()
+    googlePage = new GoogleSearchPage(this.driver)
   })
 
   afterAll(async function () {
-    await driver.quit()
+    await this.driver.quit()
   })
 
   it('Results quantity Test', async function () {
     await googlePage.open()
-    setTimeout(function () {
-
-    }, 10000)
     await googlePage.typeSearchQuery('iTechArt')
     await googlePage.clickSearchButton()
     let number = await googlePage.getQuantityOfSearchResults()
