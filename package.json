@@ -5,13 +5,13 @@
     "test": "node node_modules/jasmine/bin/jasmine"
   },
   "dependencies": {
+    "chromedriver": "^2.43.1",
     "jasmine-expect": "^3.8.4",
-    "selenium-node-webdriver": "^0.1.2",
     "selenium-webdriver": "latest"
   },
   "devDependencies": {
+    "chromedriver": "^2.43.1",
     "jasmine": "^3.3.0",
-    "selenium-node-webdriver": "^0.1.2",
     "selenium-webdriver": "latest"
   }
 }

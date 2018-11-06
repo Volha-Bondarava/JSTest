@@ -1,4 +1,5 @@
 let GoogleSearchPage = require('./GoogleSearchPage.js');
+require('chromedriver');
 let webdriver = require('selenium-webdriver');
 
 describe('Test with Page Object', function () {

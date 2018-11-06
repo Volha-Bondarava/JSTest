@@ -1,3 +1,4 @@
+require('chromedriver');
 const {Key, By, until} = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver');
 

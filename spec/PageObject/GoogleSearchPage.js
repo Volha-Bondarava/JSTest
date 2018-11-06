@@ -24,7 +24,7 @@ GoogleSearchPage.prototype.clickSearchButton = async function() {
 };
 
 GoogleSearchPage.prototype.getQuantityOfSearchResults = async function() {
-    let text = await this.driver.findElement(By.id('resultStats')).getText();
+    let text = await this.driver.findElement(By.id('resultStats')).getText();node_
     text = text.substring(0, text.length - 11);
     return parseInt(text.replace(/\D+/g, ""));
 };
