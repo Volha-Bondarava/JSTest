@@ -23,8 +23,7 @@ describe("Test without Page Object", function () {
         let number = parseInt(text.replace(/\D+/g, ""));
         console.log(`Количество результатов: ${number}`);
 
-        let values = await driver.findElements(By.xpath("//h3"));
-        values.splice(-1, 1);
+        let values = await driver.findElements(By.xpath("//div[@id='search']//h3"));
         values.forEach(async function (element) {
             let result = await element.getText();
             expect(result.includes("iTechArt")).toBeTruthy();

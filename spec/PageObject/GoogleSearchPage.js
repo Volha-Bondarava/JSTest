@@ -16,23 +16,24 @@ class GoogleSearchPage {
         return this.driver.get(this.url);
     };
 
-    typeSearchQuery = function (text) {
+    typeSearchQuery(text) {
         return this.driver.findElement(this.searchField).sendKeys(text);
     };
 
-    clickSearchButton = async function() {
+    async clickSearchButton() {
         await this.driver.findElement(this.searchButton).click();
         return this.driver.wait(until.titleIs('iTechArt - Пошук Google'));
     };
 
-    getQuantityOfSearchResults = async function() {
+    async getQuantityOfSearchResults() {
         let text = await this.driver.findElement(By.id('resultStats')).getText();
         text = text.substring(0, text.length - 11);
         return parseInt(text.replace(/\D+/g, ""));
     };
 
-    getSearchResults = async function() {
+    async getSearchResults() {
         return await this.driver.findElements(this.searchResults);
     };
 }
+
 module.exports = GoogleSearchPage;

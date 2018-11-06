@@ -1,4 +1,4 @@
-let GoogleSearchPage = require('./GoogleSearchPage.js');
+let GoogleSearchPage = require('../PageObject/GoogleSearchPage.js');
 require('chromedriver');
 let webdriver = require('selenium-webdriver');
 
