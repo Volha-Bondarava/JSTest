@@ -8,13 +8,13 @@ class GoogleSearchPage {
     this.url = 'http://google.by'
     this.searchField = webdriver.By.name('q')
     this.resultStats = webdriver.By.id('resultStats')
-    this.searchResults = webdriver.By.xpath('//div[@id=\'search\']//h3')
+    this.searchResults = webdriver.By.xpath('//div[@id=\'search\']//a/h3')
     this.searchButton = webdriver.By.name('btnK')
   };
 
   async open () {
     this.driver.get(this.url)
-    await this.driver.wait(until.elementLocated(By.name('q')), 8000)
+    await this.driver.wait(until.elementLocated(By.name('q')))
     return this
   };
 
@@ -25,7 +25,7 @@ class GoogleSearchPage {
   async clickSearchButton () {
     await this.driver.findElement(this.searchButton).click()
     await this.driver.wait(until.elementLocated(By.id('resultStats')))
-    return
+    return this
   };
 
   async getQuantityOfSearchResults () {
