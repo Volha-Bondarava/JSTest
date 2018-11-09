@@ -1,3 +1,4 @@
+let using = require('jasmine-data-provider')
 let provider = require('../properties/data.json')
 let GoogleSearchPage = require('../PageObject/GoogleSearchPage.js')
 require('chromedriver')
@@ -15,25 +16,24 @@ describe('Test with Page Object', function () {
     await googlePage.quitDriver()
   })
 
-  for (let i = 0; i < provider.data.length; i++) {
+  using(provider, function (data) {
     it('Results quantity Test', async function () {
-      await googlePage.searchQuery(provider.data[i].query)
+      googlePage.open()
+      googlePage.typeSearchQuery(data.query)
+      await googlePage.clickSearchButton()
 
       let number = await googlePage.getQuantityOfSearchResults()
-      expect(number).toBeGreaterThan(provider.data[i].resultsNumber)
-      console.log(`Query: ${provider.data[i].query}. There is about ${number} results.`)
+      expect(number).toBeGreaterThan(data.resultsNumber)
+      console.log(`Query: ${data.query}. There is about ${number} results.`)
     })
-  }
 
-  for (let i = 0; i < provider.data.length; i++) {
     it('Relevance of results Test', async function () {
-      await googlePage.searchQuery(provider.data[i].query)
 
       let results = await googlePage.getSearchResults()
       results.forEach(async function (element) {
         let result = await element.getText()
-        expect(result.includes(provider.data[i].query)).toBeTruthy()
+        expect(result.includes(data.query)).toBeTruthy()
       })
     })
-  }
+  })
 })

@@ -1,5 +1,5 @@
 let using = require('jasmine-data-provider')
-let provider = require('../properties/data.js')
+let provider = require('../properties/data.json')
 const {Key, By, until} = require('selenium-webdriver')
 let webdriver = require('selenium-webdriver')
 
@@ -14,7 +14,7 @@ describe('Test without Page Object', function () {
     await this.driver.quit()
   })
 
-  using(provider(), function (data) {
+  using(provider, function (data) {
     it('Results quantity Test', async function () {
       await this.driver.get('http://google.by')
       await this.driver.wait(until.elementLocated(By.name('q')))
@@ -29,15 +29,8 @@ describe('Test without Page Object', function () {
       }
       console.log(`Запрос: ${data.query}. Количество результатов: ${number}`)
     })
-  })
 
-  using(provider(), function (data) {
     it('Relevance of results Test', async function () {
-      await this.driver.get('http://google.by')
-      await this.driver.wait(until.elementLocated(By.name('q')))
-      await this.driver.findElement(By.name('q')).sendKeys(data.query, Key.RETURN)
-      await this.driver.wait(until.elementLocated(By.id('resultStats')))
-
       let values = await this.driver.findElements(By.xpath('//div[@id=\'search\']//a/h3'))
       values.forEach(async function (element) {
         let result = await element.getText()

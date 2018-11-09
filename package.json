@@ -8,6 +8,7 @@
   "devDependencies": {
     "chromedriver": "^2.43.1",
     "jasmine": "^3.3.0",
+    "jasmine-data-provider": "^2.2.0",
     "selenium-webdriver": "latest"
   }
 }
