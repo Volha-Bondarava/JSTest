@@ -4,16 +4,15 @@ require('chromedriver')
 let webdriver = require('selenium-webdriver')
 
 describe('Test with Page Object', function () {
-  let driver
   let googlePage
 
   beforeAll(async function () {
-    this.driver = await new webdriver.Builder().forBrowser('chrome').build()
-    googlePage = new GoogleSearchPage(this.driver)
+    googlePage = new GoogleSearchPage(
+      await new webdriver.Builder().forBrowser('chrome').build())
   })
 
   afterAll(async function () {
-    await this.driver.quit()
+    await googlePage.quitDriver()
   })
 
   for (let i = 0; i < provider.data.length; i++) {

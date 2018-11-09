@@ -14,8 +14,7 @@ class GoogleSearchPage {
 
   async open () {
     this.driver.get(this.url)
-    await this.driver.wait(until.elementLocated(By.name('q')))
-    return this
+    return await this.driver.wait(until.elementLocated(By.name('q')))
   };
 
   typeSearchQuery (text) {
@@ -24,8 +23,7 @@ class GoogleSearchPage {
 
   async clickSearchButton () {
     await this.driver.findElement(this.searchButton).click()
-    await this.driver.wait(until.elementLocated(By.id('resultStats')))
-    return this
+    return await this.driver.wait(until.elementLocated(By.id('resultStats')))
   };
 
   async getQuantityOfSearchResults () {
@@ -43,8 +41,11 @@ class GoogleSearchPage {
   async searchQuery (query) {
     await this.open()
     this.typeSearchQuery(query)
-    await this.clickSearchButton()
-    return this
+    return await this.clickSearchButton()
+  }
+
+  async quitDriver () {
+    await this.driver.quit()
   }
 }
 
