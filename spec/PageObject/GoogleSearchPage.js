@@ -39,6 +39,12 @@ class GoogleSearchPage {
     results = await this.driver.findElements(this.searchResults)
     return results
   };
+
+  async searchQuery (query) {
+    await this.open()
+    this.typeSearchQuery(query)
+    return await this.clickSearchButton()
+  }
 }
 
 module.exports = GoogleSearchPage

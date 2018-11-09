@@ -19,9 +19,8 @@ describe('Test with Page Object', function () {
 
   using(provider(), function (data) {
     it('Results quantity Test', async function () {
-      await googlePage.open()
-      await googlePage.typeSearchQuery(data.query)
-      await googlePage.clickSearchButton()
+      await googlePage.searchQuery(data.query)
+      
       let number = await googlePage.getQuantityOfSearchResults()
       if (number < data.resultsNumber) {
         fail(`There is few results (fewer than ${data.resultsNumber}) `)
@@ -32,9 +31,7 @@ describe('Test with Page Object', function () {
 
   using(provider(), function (data) {
     it('Relevance of results Test', async function () {
-      await googlePage.open()
-      await googlePage.typeSearchQuery(data.query)
-      await googlePage.clickSearchButton()
+      await googlePage.searchQuery(data.query)
 
       let results = await googlePage.getSearchResults()
       results.forEach(async function (element) {
