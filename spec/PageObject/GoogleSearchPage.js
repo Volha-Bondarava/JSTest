@@ -43,7 +43,8 @@ class GoogleSearchPage {
   async searchQuery (query) {
     await this.open()
     this.typeSearchQuery(query)
-    return await this.clickSearchButton()
+    await this.clickSearchButton()
+    return this
   }
 }
 
