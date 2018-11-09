@@ -7,19 +7,22 @@ describe('Test without Page Object', function () {
   let driver
 
   beforeAll(async function () {
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     this.driver = await new webdriver.Builder().forBrowser('chrome').build()
   })
 
   afterAll(async function () {
     await this.driver.quit()
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
   })
 
   using(provider, function (data) {
     it('Results quantity Test', async function () {
       await this.driver.get('http://google.by')
-      await this.driver.wait(until.elementLocated(By.name('q')))
+      await this.driver.wait(until.elementLocated(By.name('q')), 10000)
       await this.driver.findElement(By.name('q')).sendKeys(data.query, Key.RETURN)
-      await this.driver.wait(until.elementLocated(By.id('resultStats')))
+      await this.driver.wait(until.elementLocated(By.id('resultStats')), 10000)
 
       let text = await this.driver.findElement(By.id('resultStats')).getText()
       text = text.substring(0, text.length - 11)
@@ -37,5 +40,7 @@ describe('Test without Page Object', function () {
         expect(result.includes(data.query)).toBeTruthy()
       })
     })
+
   })
+
 })

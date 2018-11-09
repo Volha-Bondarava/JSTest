@@ -14,7 +14,7 @@ class GoogleSearchPage {
 
   async open () {
     this.driver.get(this.url)
-    return await this.driver.wait(until.elementLocated(this.searchField))
+    return await this.driver.wait(until.elementLocated(this.searchField), 10000)
   };
 
   typeSearchQuery (text) {
@@ -23,7 +23,7 @@ class GoogleSearchPage {
 
   async clickSearchButton () {
     await this.driver.findElement(this.searchButton).click()
-    return await this.driver.wait(until.elementLocated(this.resultStats))
+    return await this.driver.wait(until.elementLocated(this.resultStats), 10000)
   };
 
   async getQuantityOfSearchResults () {

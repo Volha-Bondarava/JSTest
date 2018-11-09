@@ -6,14 +6,19 @@ let webdriver = require('selenium-webdriver')
 
 describe('Test with Page Object', function () {
   let googlePage
+  let originalTimeout
 
   beforeAll(async function () {
-    googlePage = new GoogleSearchPage(
-      await new webdriver.Builder().forBrowser('chrome').build())
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
+    let driver = await new webdriver.Builder().forBrowser('chrome').build()
+    await driver.manage().setTimeouts({implicit: 10000, pageLoad: 10000})
+    googlePage = new GoogleSearchPage(driver)
   })
 
   afterAll(async function () {
     await googlePage.quitDriver()
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
   })
 
   using(provider, function (data) {
@@ -28,12 +33,13 @@ describe('Test with Page Object', function () {
     })
 
     it('Relevance of results Test', async function () {
-
       let results = await googlePage.getSearchResults()
       results.forEach(async function (element) {
         let result = await element.getText()
         expect(result.includes(data.query)).toBeTruthy()
       })
     })
+    
   })
+
 })
