@@ -12,7 +12,7 @@ class GoogleSearchPage {
   };
 
   async open () {
-    this.driver.get(this.url)
+    await this.driver.get(this.url)
     return await this.driver.wait(until.elementLocated(this.searchField), 15000, 'Can\'t locate search field after opening google.by')
   };
 
@@ -21,20 +21,25 @@ class GoogleSearchPage {
   };
 
   async getQuantityOfSearchResults () {
+    await this.driver.wait(until.elementLocated(this.resultStats), 15000)
     let text = await this.driver.findElement(this.resultStats).getText()
     text = text.substring(0, text.length - 11)
     return parseInt(text.replace(/\D+/g, ''))
   };
 
   async getSearchResults () {
-    let results = []
-    results = await this.driver.findElements(this.searchResults)
-    return results
+    let values = []
+    let results = await this.driver.findElements(this.searchResults)
+    await Promise.all(results.map(async result => {
+      let value = await result.getText()
+      values.push(value)
+    }))
+    return values
   };
 
   async quitDriver () {
     await this.driver.quit()
-  }
+  };
 }
 
 module.exports = GoogleSearchPage
