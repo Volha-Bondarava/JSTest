@@ -1,4 +1,4 @@
-const {By, until} = require('selenium-webdriver')
+const {until, Key} = require('selenium-webdriver')
 let webdriver = require('selenium-webdriver')
 
 class GoogleSearchPage {
@@ -9,21 +9,15 @@ class GoogleSearchPage {
     this.searchField = webdriver.By.name('q')
     this.resultStats = webdriver.By.id('resultStats')
     this.searchResults = webdriver.By.xpath('//div[@id=\'search\']//a/h3')
-    this.searchButton = webdriver.By.name('btnK')
   };
 
   async open () {
     this.driver.get(this.url)
-    return await this.driver.wait(until.elementLocated(this.searchField), 10000)
+    return await this.driver.wait(until.elementLocated(this.searchField), 15000, 'Can\'t locate search field after opening google.by')
   };
 
-  typeSearchQuery (text) {
-    return this.driver.findElement(this.searchField).sendKeys(text)
-  };
-
-  async clickSearchButton () {
-    await this.driver.findElement(this.searchButton).click()
-    return await this.driver.wait(until.elementLocated(this.resultStats), 10000)
+  async searchQuery (text) {
+    return await this.driver.findElement(this.searchField).sendKeys(text, Key.RETURN)
   };
 
   async getQuantityOfSearchResults () {

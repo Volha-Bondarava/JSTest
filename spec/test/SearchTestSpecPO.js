@@ -10,9 +10,9 @@ describe('Test with Page Object', function () {
 
   beforeAll(async function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
     let driver = await new webdriver.Builder().forBrowser('chrome').build()
-    await driver.manage().setTimeouts({implicit: 10000, pageLoad: 10000})
+    await driver.manage().setTimeouts({implicit: 15000, pageLoad: 15000})
     googlePage = new GoogleSearchPage(driver)
   })
 
@@ -24,8 +24,7 @@ describe('Test with Page Object', function () {
   using(provider, function (data) {
     it('Results quantity Test', async function () {
       googlePage.open()
-      googlePage.typeSearchQuery(data.query)
-      await googlePage.clickSearchButton()
+      await googlePage.searchQuery(data.query)
 
       let number = await googlePage.getQuantityOfSearchResults()
       expect(number).toBeGreaterThan(data.resultsNumber)
@@ -39,7 +38,7 @@ describe('Test with Page Object', function () {
         expect(result.includes(data.query)).toBeTruthy()
       })
     })
-    
+
   })
 
 })
