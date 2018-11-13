@@ -34,7 +34,7 @@ describe('Test with Page Object', function () {
 
     it('Relevance of results Test', async function (done) {
       let results = await googlePage.getSearchResults()
-      expect(results.length).toBeCloseTo(10)
+      expect(results.length).toBeGreaterThan(0)
       results.forEach(function (element) {
         expect(element.includes(data.query)).toBeTruthy()
       })
