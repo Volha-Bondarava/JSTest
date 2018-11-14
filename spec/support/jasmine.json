@@ -3,8 +3,5 @@
   "spec_files": [
     "**/*[sS]pecPO.js"
   ],
-  "helpers": [
-    "/node_modules/jasmine-expect/index.js"
-  ],
   "random": false
 }
