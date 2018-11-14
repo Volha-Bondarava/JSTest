@@ -18,7 +18,6 @@ describe('Test with Page Object', function () {
 
   afterAll(async function () {
     await googlePage.quitDriver()
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
   })
 
   using(provider, function (data) {
