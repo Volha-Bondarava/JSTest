@@ -1,7 +1,7 @@
 [
   {
     "query": "iTechArt",
-    "resultsNumber": 50000
+    "resultsNumber": 5000
   },
   {
     "query": "Transmission Control Protocol",
@@ -9,7 +9,7 @@
   },
   {
     "query": "User Datagram Protocol",
-    "resultsNumber": 5000000
+    "resultsNumber": 50000
   }
 ]
 
