@@ -21,7 +21,7 @@ class GoogleSearchPage {
   };
 
   async getQuantityOfSearchResults () {
-    await this.driver.wait(until.elementLocated(this.resultStats), 15000)
+    await this.driver.wait(until.elementLocated(this.resultStats), 15000, 'Can\'t locate the element with search result\'s number')
     let text = await this.driver.findElement(this.resultStats).getText()
     text = text.substring(0, text.length - 11)
     return parseInt(text.replace(/\D+/g, ''))
