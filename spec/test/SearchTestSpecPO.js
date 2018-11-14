@@ -32,7 +32,8 @@ describe('Test with Page Object', function () {
       let results = await googlePage.getSearchResults()
       await expect(results.length).toBeGreaterThan(0)
       results.forEach(function (result) {
-        expect(result.includes(data.query)).toBeTruthy()
+        let isOk = (result.includes(data.query) || result.includes(data.extra))
+        expect(isOk).toBeTruthy()
       })
     })
 
