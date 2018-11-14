@@ -6,10 +6,8 @@ let webdriver = require('selenium-webdriver')
 
 describe('Test with Page Object', function () {
   let googlePage
-  let originalTimeout
 
   beforeAll(async function () {
-    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
     let driver = await new webdriver.Builder().forBrowser('chrome').build()
     await driver.manage().setTimeouts({implicit: 15000, pageLoad: 15000})
