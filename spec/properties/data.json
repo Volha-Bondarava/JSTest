@@ -1,17 +1,17 @@
 [
   {
     "query": "iTechArt",
-    "extra": "",
+    "regexp": "iTechArt",
     "resultsNumber": 5000
   },
   {
     "query": "Transmission Control Protocol",
-    "extra": "TCP",
+    "regexp": "Transmission Control Protocol|TCP",
     "resultsNumber": 1000000
   },
   {
     "query": "User Datagram Protocol",
-    "extra": "UDP",
+    "regexp": "User Datagram Protocol|UDP",
     "resultsNumber": 50000
   }
 ]
