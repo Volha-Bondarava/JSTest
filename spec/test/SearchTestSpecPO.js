@@ -21,23 +21,21 @@ describe('Test with Page Object', function () {
   })
 
   using(provider, function (data) {
-    it('Results quantity Test', async function (done) {
+    it('Results quantity Test', async function () {
       await googlePage.open()
       await googlePage.searchQuery(data.query)
 
       let number = await googlePage.getQuantityOfSearchResults()
-      expect(number).toBeGreaterThan(data.resultsNumber)
+      await expect(number).toBeGreaterThan(data.resultsNumber)
       console.log(`Query: ${data.query}. There is about ${number} results.`)
-      done()
     })
 
-    it('Relevance of results Test', async function (done) {
+    it('Relevance of results Test', async function () {
       let results = await googlePage.getSearchResults()
-      expect(results.length).toBeGreaterThan(0)
+      await expect(results.length).toBeGreaterThan(0)
       results.forEach(function (element) {
         expect(element.includes(data.query)).toBeTruthy()
       })
-      done()
     })
 
   })
