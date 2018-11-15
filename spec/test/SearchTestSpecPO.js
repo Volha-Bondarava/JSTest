@@ -33,7 +33,7 @@ describe('Test with Page Object', function () {
       await expect(results.length).toBeGreaterThan(0)
       results.forEach(function (result) {
         let reg = RegExp(data.regexp)
-        expect(reg.test(result)).toBeTruthy()
+        expect(reg.test(result)).toBeTruthy(`act: ${result}, exp: ${data.query}`)
       })
     })
 
