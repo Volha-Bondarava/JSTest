@@ -30,6 +30,18 @@ class DriverActions {
     return await this.driver.findElement(locator).sendKeys(text, Key.RETURN)
   }
 
+  async find(locator) {
+    return await this.driver.findElement(locator)
+  }
+
+  async finds(locator) {
+    return await this.driver.findElements(locator)
+  }
+
+  async getElementHref(locator) {
+    return await this.driver.findElement(locator).getAttribute("href")
+  }
+
 }
 
 module.exports = DriverActions
