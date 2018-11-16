@@ -20,8 +20,8 @@ class GoogleSearchResultsPage extends BasePage {
   async getSearchResults () {
     let values = []
     let results = await this.driver.finds(this.searchResults)
-    for(let i = 0; i < results.length; i++) {
-      values.push( await results[i].getText())
+    for (let i = 0; i < results.length; i++) {
+      values.push(await results[i].getText())
     }
     return values
   };

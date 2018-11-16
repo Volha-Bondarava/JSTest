@@ -1,4 +1,4 @@
-const {until, Key, By} = require('selenium-webdriver')
+const {until, Key} = require('selenium-webdriver')
 
 class DriverActions {
 
@@ -30,16 +30,16 @@ class DriverActions {
     return await this.driver.findElement(locator).sendKeys(text, Key.RETURN)
   }
 
-  async find(locator) {
+  async find (locator) {
     return await this.driver.findElement(locator)
   }
 
-  async finds(locator) {
+  async finds (locator) {
     return await this.driver.findElements(locator)
   }
 
-  async getElementHref(locator) {
-    return await this.driver.findElement(locator).getAttribute("href")
+  async getElementHref (locator) {
+    return await this.driver.findElement(locator).getAttribute('href')
   }
 
 }
