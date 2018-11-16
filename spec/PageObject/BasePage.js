@@ -2,7 +2,7 @@ let driverActions = require('../driverActions/DriverActions')
 
 class BasePage {
 
-  constructor (driver, url) {
+  constructor (driver, url = '') {
     this.driver = new driverActions(driver)
     this.url = url
   }
