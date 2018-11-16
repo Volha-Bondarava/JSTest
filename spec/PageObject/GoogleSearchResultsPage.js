@@ -7,6 +7,7 @@ class GoogleSearchResultsPage extends BasePage {
     super(driver)
     this.resultStats = webdriver.By.id('resultStats')
     this.searchResults = webdriver.By.xpath('//div[@id=\'search\']//a/h3')
+    this.nextPageLink = webdriver.By.className('pn')
   };
 
   async getQuantityOfSearchResults () {
@@ -20,10 +21,16 @@ class GoogleSearchResultsPage extends BasePage {
     let values = []
     let results = await this.driver.getDriver().findElements(this.searchResults)
     await Promise.all(results.map(async result => {
-      values.push(await result.getText())
+      let value = await result.getText()
+      values.push(value)
     }))
     return values
   };
+
+  async navigateToNextPage () {
+    this.url = await this.driver.getDriver().findElement(this.nextPageLink).getAttribute('href')
+    return this.open()
+  }
 
 }
 

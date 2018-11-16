@@ -39,6 +39,14 @@ describe('Test with Page Object', function () {
         let reg = RegExp(data.regexp)
         expect(reg.test(result)).toBeTruthy(`act: ${result}, exp: ${data.query}`)
       })
+
+      await googleResultsPage.navigateToNextPage()
+      results = await googleResultsPage.getSearchResults()
+      await expect(results.length).toBeGreaterThan(0)
+      results.forEach(function (result) {
+        let reg = RegExp(data.regexp)
+        expect(reg.test(result)).toBeTruthy(`act: ${result}, exp: ${data.query}`)
+      })
     })
 
   })

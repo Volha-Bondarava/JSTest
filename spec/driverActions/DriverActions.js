@@ -1,4 +1,4 @@
-const {until, Key} = require('selenium-webdriver')
+const {until, Key, By} = require('selenium-webdriver')
 
 class DriverActions {
 
