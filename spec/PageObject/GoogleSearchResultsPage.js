@@ -19,7 +19,7 @@ class GoogleSearchResultsPage extends BasePage {
 
   async getSearchResults () {
     let values = []
-    let results = await this.driver.getDriver().findElements(this.searchResults)
+    let results = await this.driver.finds(this.searchResults)
     for(let i = 0; i < results.length; i++) {
       values.push( await results[i].getText())
     }
@@ -27,7 +27,7 @@ class GoogleSearchResultsPage extends BasePage {
   };
 
   async navigateToNextPage () {
-    this.url = await this.driver.getDriver().findElement(this.nextPageLink).getAttribute('href')
+    this.url = await this.driver.getElementHref(this.nextPageLink)
     return this.open()
   }
 
