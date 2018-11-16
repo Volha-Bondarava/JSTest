@@ -1,31 +1,17 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
-    jasmine: {
-      pivotal: {
-        src: 'spec/support/jasmine.js',
-        options: {
-          //specs: 'spec/test/SearchTestSpecPO.js',
-        }
+    run: {
+      integration_server: {
+        options: {},
+        args: [
+          'spec/support/jasmine'
+        ]
       }
-    },
-    browserify: {
-      forJasmine: {
-        src: 'spec/support/jasmine.js',
-        dest: 'dist/jasmine.browserified.js',
-        options: {
-          require: ['jasmine']
-        }
-      }
-    },
-    concat: {
-      'dist/bundle.js': ['dist/jasmine.browserified.js', 'spec/support/jasmine.js']
     }
   })
-  grunt.loadNpmTasks('grunt-contrib-jasmine')
-  grunt.loadNpmTasks('grunt-contrib-concat')
-  grunt.loadNpmTasks('grunt-browserify')
+  grunt.loadNpmTasks('grunt-run')
 
-  grunt.registerTask('test', ['jasmine'])
-  grunt.registerTask('default', ['jasmine', 'browserify', 'concat'])
+  grunt.registerTask('test', ['run'])
+  grunt.registerTask('default', ['run'])
 }
