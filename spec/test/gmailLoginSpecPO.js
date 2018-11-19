@@ -23,7 +23,7 @@ describe('Google Login Test', function () {
     await googleLogin.typeLogin(mailData.login)
     await googleLogin.typePassword(mailData.password)
     await googleLogin.openMailbox()
-    googleMailbox = await new googleMailboxPage(googleLogin.driver.getWebDriver())
+    googleMailbox = await new googleMailboxPage(googleLogin.getDriver())
     let sender = await googleMailbox.findMessage('Ha-ha-ha')
     console.log(`Sender of message is ${sender}`)
   })

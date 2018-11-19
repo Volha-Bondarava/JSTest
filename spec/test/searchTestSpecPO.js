@@ -25,7 +25,7 @@ describe('Test with Page Object', function () {
       await googleBasePage.open()
       await googleBasePage.searchQuery(data.query)
 
-      googleResultsPage = new googleSearchResultsPage(googleBasePage.driver.getWebDriver())
+      googleResultsPage = new googleSearchResultsPage(googleBasePage.getDriver())
 
       let number = await googleResultsPage.getQuantityOfSearchResults()
       await expect(number).toBeGreaterThan(data.resultsNumber)

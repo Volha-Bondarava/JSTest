@@ -10,10 +10,6 @@ class driverActions {
     return await this.driver.get(url)
   }
 
-  getWebDriver () {
-    return this.driver
-  }
-
   async waitForElementLocated (locator, timeout = 15000) {
     return await this.driver.wait(until.elementLocated(locator), timeout, `Can't locate element ${locator}`)
   }

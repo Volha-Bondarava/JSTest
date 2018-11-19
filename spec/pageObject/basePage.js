@@ -14,6 +14,10 @@ class BasePage {
   async close() {
     return this.driver.driver.quit()
   }
+
+  getDriver() {
+    return this.driver.driver
+  }
 }
 
 module.exports = BasePage
