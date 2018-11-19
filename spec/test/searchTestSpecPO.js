@@ -1,7 +1,7 @@
 let using = require('jasmine-data-provider')
 let provider = require('../properties/data.json')
-let GoogleSearchPage = require('../PageObject/GoogleSearchPage.js')
-let GoogleSearchResultsPage = require('../PageObject/GoogleSearchResultsPage.js')
+let GoogleSearchPage = require('../pageObject/googleSearchPage.js')
+let GoogleSearchResultsPage = require('../pageObject/googleSearchResultsPage.js')
 require('chromedriver')
 let webdriver = require('selenium-webdriver')
 

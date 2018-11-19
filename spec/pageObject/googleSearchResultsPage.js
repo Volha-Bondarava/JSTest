@@ -1,5 +1,5 @@
 let webdriver = require('selenium-webdriver')
-let BasePage = require('../PageObject/BasePage.js')
+let BasePage = require('.//basePage.js')
 
 class GoogleSearchResultsPage extends BasePage {
 

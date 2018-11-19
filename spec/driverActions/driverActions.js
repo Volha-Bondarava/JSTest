@@ -10,10 +10,6 @@ class DriverActions {
     return this.driver
   }
 
-  async waitForElementLocated (locator, timeout = 15000) {
-    return await this.driver.wait(until.elementLocated(locator), timeout, `Can't locate element ${locator}`)
-  }
-
   async openPage (url) {
     return await this.driver.get(url)
   }
@@ -22,12 +18,8 @@ class DriverActions {
     return await this.driver.quit()
   }
 
-  async getElementText (locator) {
-    return await this.driver.findElement(locator).getText()
-  }
-
-  async typeAndSubmit (locator, text) {
-    return await this.driver.findElement(locator).sendKeys(text, Key.RETURN)
+  async waitForElementLocated (locator, timeout = 15000) {
+    return await this.driver.wait(until.elementLocated(locator), timeout, `Can't locate element ${locator}`)
   }
 
   async find (locator) {
@@ -36,6 +28,14 @@ class DriverActions {
 
   async finds (locator) {
     return await this.driver.findElements(locator)
+  }
+
+  async typeAndSubmit (locator, text) {
+    return await this.driver.findElement(locator).sendKeys(text, Key.RETURN)
+  }
+
+  async getElementText (locator) {
+    return await this.driver.findElement(locator).getText()
   }
 
   async getElementHref (locator) {

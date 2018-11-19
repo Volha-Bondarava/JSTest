@@ -1,4 +1,4 @@
-let driverActions = require('../driverActions/DriverActions')
+let driverActions = require('../driverActions/driverActions')
 
 class BasePage {
 
