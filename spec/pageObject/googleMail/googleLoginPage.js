@@ -19,8 +19,8 @@ class googleLoginPage extends basePage {
   }
 
   async typeLogin (login) {
-    return await this.driver.typeAndSubmit(this.loginField, login)
-    // return await this.driver.waitForElementLocated(this.passwordField)
+    await this.driver.typeAndSubmit(this.loginField, login)
+    return await this.driver.waitForElementLocated(this.passwordField)
   }
 
   async typePassword (password) {
