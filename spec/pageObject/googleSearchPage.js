@@ -1,7 +1,7 @@
 let webdriver = require('selenium-webdriver')
 let BasePage = require('.//basePage.js')
 
-class GoogleSearchPage extends BasePage {
+class googleSearchPage extends BasePage {
 
   constructor (driver) {
     super(driver, 'http://google.by')
@@ -14,4 +14,4 @@ class GoogleSearchPage extends BasePage {
 
 }
 
-module.exports = GoogleSearchPage
+module.exports = googleSearchPage

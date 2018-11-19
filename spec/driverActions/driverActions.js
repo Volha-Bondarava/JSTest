@@ -1,25 +1,26 @@
 const {until, Key} = require('selenium-webdriver')
 
-class DriverActions {
+class driverActions {
 
   constructor (driver) {
     this.driver = driver
-  }
-
-  getDriver () {
-    return this.driver
   }
 
   async openPage (url) {
     return await this.driver.get(url)
   }
 
-  async quitDriver () {
-    return await this.driver.quit()
+  getWebDriver () {
+    return this.driver
   }
 
   async waitForElementLocated (locator, timeout = 15000) {
     return await this.driver.wait(until.elementLocated(locator), timeout, `Can't locate element ${locator}`)
+  }
+
+  async waitElementIsVisible (locator, timeout = 15000) {
+    let element = await this.driver.findElement(locator)
+    return await this.driver.wait(until.elementIsVisible(element), timeout, `Element ${element} is not visible`)
   }
 
   async find (locator) {
@@ -28,6 +29,14 @@ class DriverActions {
 
   async finds (locator) {
     return await this.driver.findElements(locator)
+  }
+
+  async click (locator) {
+    return await this.driver.findElement(locator).click()
+  }
+
+  async type (locator, text) {
+    return await this.driver.findElement(locator).sendKeys(text)
   }
 
   async typeAndSubmit (locator, text) {
@@ -42,6 +51,14 @@ class DriverActions {
     return await this.driver.findElement(locator).getAttribute('href')
   }
 
+  async getElementAttribute (locator, attribute) {
+    return await this.driver.findElement(locator).getAttribute(attribute)
+  }
+
+  async getUrl () {
+    return await this.driver.getCurrentUrl()
+  }
+
 }
 
-module.exports = DriverActions
+module.exports = driverActions

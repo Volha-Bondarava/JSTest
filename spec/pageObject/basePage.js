@@ -11,8 +11,8 @@ class BasePage {
     return await this.driver.openPage(this.url)
   }
 
-  async close () {
-    return await this.driver.quitDriver()
+  async close() {
+    return this.driver.driver.quit()
   }
 }
 

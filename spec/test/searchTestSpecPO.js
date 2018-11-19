@@ -1,7 +1,7 @@
 let using = require('jasmine-data-provider')
 let provider = require('../properties/data.json')
-let GoogleSearchPage = require('../pageObject/googleSearchPage.js')
-let GoogleSearchResultsPage = require('../pageObject/googleSearchResultsPage.js')
+let googleSearchPage = require('../pageObject/googleSearchPage.js')
+let googleSearchResultsPage = require('../pageObject/googleSearchResultsPage.js')
 require('chromedriver')
 let webdriver = require('selenium-webdriver')
 
@@ -12,7 +12,7 @@ describe('Test with Page Object', function () {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
     let driver = await new webdriver.Builder().forBrowser('chrome').build()
     await driver.manage().setTimeouts({implicit: 15000, pageLoad: 15000})
-    googleBasePage = new GoogleSearchPage(driver)
+    googleBasePage = new googleSearchPage(driver)
   })
 
   afterAll(function () {
@@ -25,7 +25,7 @@ describe('Test with Page Object', function () {
       await googleBasePage.open()
       await googleBasePage.searchQuery(data.query)
 
-      googleResultsPage = new GoogleSearchResultsPage(googleBasePage.driver.getDriver())
+      googleResultsPage = new googleSearchResultsPage(googleBasePage.driver.getWebDriver())
 
       let number = await googleResultsPage.getQuantityOfSearchResults()
       await expect(number).toBeGreaterThan(data.resultsNumber)
