@@ -11,7 +11,6 @@ describe('Test with Page Object', function () {
   let driver
 
   beforeAll(async function () {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
     driver = await configuration.before()
   })
 
@@ -22,12 +21,9 @@ describe('Test with Page Object', function () {
   describe('Search', function () {
     let googleBasePage, googleResultsPage
 
-    beforeAll(function () {
-      googleBasePage = new googleSearchPage(driver)
-    })
-
     using(provider, function (data) {
       it('Results quantity Test', async function () {
+        googleBasePage = new googleSearchPage(driver)
 
         await googleBasePage.open()
         await googleBasePage.searchQuery(data.query)
@@ -60,10 +56,6 @@ describe('Test with Page Object', function () {
 
   describe('Google Mail', function () {
     let googleLogin, googleMailbox
-
-    beforeAll(async function () {
-      googleLogin = new googleLoginPage(driver)
-    })
 
     it('mailBox should open', async function () {
       googleLogin = new googleLoginPage(driver)

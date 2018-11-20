@@ -10,7 +10,7 @@ module.exports = {
     return driver
   },
 
-  after: async function(driver ) {
+  after: async function (driver) {
     return await driver.quit()
   }
 }
@@ -20,6 +20,9 @@ jasmine.loadConfig({
   spec_dir: 'spec',
   spec_files: [
     '../spec/test/*SpecPO.js',
+  ],
+  helpers: [
+    '../spec/helpers/specHelper.js'
   ]
 })
 
