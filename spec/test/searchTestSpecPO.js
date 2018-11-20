@@ -1,24 +1,22 @@
 let using = require('jasmine-data-provider')
+let configuration = require('../support/jasmine')
 let provider = require('../properties/data.json')
+let mailData = require('../properties/mail.json')
 let googleSearchPage = require('../pageObject/googleSearchPage.js')
 let googleSearchResultsPage = require('../pageObject/googleSearchResultsPage.js')
 let googleLoginPage = require('../pageObject/googleMail/googleLoginPage.js')
 let googleMailboxPage = require('../pageObject/googleMail/googleMailboxPage.js')
-let mailData = require('../properties/mail.json')
-require('chromedriver')
-let webdriver = require('selenium-webdriver')
 
 describe('Test with Page Object', function () {
   let driver
 
   beforeAll(async function () {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
-    driver = await new webdriver.Builder().forBrowser('chrome').build()
-    await driver.manage().setTimeouts({implicit: 15000, pageLoad: 15000})
+    driver = await configuration.before()
   })
 
   afterAll(async function () {
-    await driver.quit()
+    await configuration.after(driver)
   })
 
   describe('Search', function () {
