@@ -2,6 +2,7 @@ let Jasmine = require('jasmine')
 let jasmine = new Jasmine()
 
 let webdriver = require('selenium-webdriver')
+let logger = require('../logger/customJasmineLogger')
 
 module.exports = {
   before: async function () {
@@ -25,6 +26,6 @@ jasmine.loadConfig({
     '../spec/helpers/specHelper.js'
   ]
 })
-
+jasmine.addReporter(logger)
 jasmine.randomizeTests(false)
 jasmine.execute()
