@@ -54,7 +54,7 @@ describe('Test with Page Object', function () {
     })
   })
 
-  describe('Google Mail', function () {
+  xdescribe('Google Mail', function () {
     let googleLogin, googleMailbox
 
     it('mailBox should open', async function () {
