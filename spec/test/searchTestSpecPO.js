@@ -1,11 +1,14 @@
 let using = require('jasmine-data-provider')
 let configuration = require('../support/jasmine')
+let language = require('../properties/translation/lang')
+let path = '../properties/translation/*.json'
 let provider = require('../properties/data.json')
 let mailData = require('../properties/mail.json')
 let googleSearchPage = require('../pageObject/googleSearchPage.js')
 let googleSearchResultsPage = require('../pageObject/googleSearchResultsPage.js')
 let googleLoginPage = require('../pageObject/googleMail/googleLoginPage.js')
 let googleMailboxPage = require('../pageObject/googleMail/googleMailboxPage.js')
+let googleTranslatePage = require('../pageObject/googleTranslatePage')
 
 describe('Test with Page Object', function () {
   let driver
@@ -18,7 +21,7 @@ describe('Test with Page Object', function () {
     await configuration.after(driver)
   })
 
-  describe('Search', function () {
+  xdescribe('Search', function () {
     let googleBasePage, googleResultsPage
 
     using(provider, function (data) {
@@ -69,4 +72,20 @@ describe('Test with Page Object', function () {
     })
   })
 
+  describe('Google Translate', function () {
+    let translatePage
+
+    using(language, function (lang) {
+      it('should translate properly', async function () {
+        translatePage = new googleTranslatePage(driver)
+        await translatePage.open()
+        let dictionary = require(path.replace('*', lang.from))
+        for (let i = 0; i < dictionary.length; i++) {
+          await translatePage.chooseLangs(lang.fao, lang.tao)
+          await translatePage.typeWordAndSubmit(dictionary[i].from)
+          expect(translatePage.getTranslation()).toEqual(dictionary[i].to)
+        }
+      })
+    })
+  })
 })

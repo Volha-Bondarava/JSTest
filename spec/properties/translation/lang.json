@@ -1,0 +1,20 @@
+[
+  {
+    "from": "eng",
+    "fao": ":m",
+    "to": "rus",
+    "tao": "55"
+  },
+  {
+    "from": "ger",
+    "fao": ":v",
+    "to": "rus",
+    "tao": "55"
+  },
+  {
+    "from": "jap",
+    "fao": ":1a",
+    "to": "rus",
+    "tao": "55"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "from": "war",
+    "to": "война"
+  },
+  {
+    "from": "description",
+    "to": "описание"
+  },
+  {
+    "from": "distribution",
+    "to": "распространение"
+  }
+]
