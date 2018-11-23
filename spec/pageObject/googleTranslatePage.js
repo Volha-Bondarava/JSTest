@@ -8,19 +8,23 @@ class googleTranslatePage extends basePage{
     this.resultField = webdriver.By.id('result_box')
     this.translateButton = webdriver.By.id('gt-submit')
     this.swapButton = webdriver.By.id('gt-swap')
-    this.langFromButtonXpath = '//*[@id=\'gt-sl-gms\']'
-    this.langToButtonXpath = '//*[@id=\'gt-tl-gms\']'
+    // this.langFromButton = '//*[@id=\'gt-sl-gms\']'
+    this.langFromButton = webdriver.By.id('gt-sl-gms')
+    // this.langToButton = '//*[@id=\'gt-tl-gms\']'
+    this.langToButton = webdriver.By.id('gt-tl-gms')
   }
 
-  async typeWordAndSubmit (lang, word) {
+  async typeWordAndSubmit (word) {
+    await this.driver.waitForElementLocated(this.wordField)
     await this.driver.type(this.wordField, word)
     return await this.driver.click(this.translateButton)
   }
 
   async chooseLangs (f_aria_owns, t_aria_owns) {
-    await this.driver.click(this.langFromButtonXpath)
+    // todo: можно использовать promise.all
+    await this.driver.click(this.langFromButton)
     await this.driver.click(webdriver.By.xpath(`//*[@aria-owns=${f_aria_owns}]`))
-    await this.driver.click(this.langToButtonXpath)
+    await this.driver.click(this.langToButton)
     return await this.driver.click(webdriver.By.xpath(`//*[@aria-owns=${t_aria_owns}]`))
   }
 

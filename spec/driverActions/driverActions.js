@@ -51,12 +51,6 @@ class driverActions {
     return await this.driver.findElement(locator).getAttribute(attribute)
   }
 
-  async selectFromListByLocator (listLocator, elementLocator) {
-    let element = this.driver.findElement(listLocator)
-    await element.click()
-    return await this.driver.findElement(elementLocator)
-  }
-
 }
 
 module.exports = driverActions

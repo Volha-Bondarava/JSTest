@@ -15,7 +15,7 @@ class googleLoginPage extends basePage {
 
   async openLoginPage () {
     await this.open()
-    await this.driver.click(this.loginButton)
+    return await this.driver.click(this.loginButton)
   }
 
   async typeLogin (login) {

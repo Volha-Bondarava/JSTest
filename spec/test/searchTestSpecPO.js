@@ -34,13 +34,13 @@ describe('Test with Page Object', function () {
         googleResultsPage = new googleSearchResultsPage(googleBasePage.getDriver())
 
         let number = await googleResultsPage.getQuantityOfSearchResults()
-        await expect(number).toBeGreaterThan(data.resultsNumber)
+        expect(number).toBeGreaterThan(data.numberOfResults)
         console.log(`Query: ${data.query}. There is about ${number} results.`)
       })
 
       it('should be relevant', async function () {
         let results = await googleResultsPage.getSearchResults()
-        await expect(results.length).toBeGreaterThan(0)
+        expect(results.length).toBeGreaterThan(0)
         results.forEach(function (result) {
           let reg = RegExp(data.regexp)
           expect(reg.test(result)).toBeTruthy(`act: ${result}, exp: ${data.query}`)
@@ -48,7 +48,7 @@ describe('Test with Page Object', function () {
 
         await googleResultsPage.navigateToNextPage()
         results = await googleResultsPage.getSearchResults()
-        await expect(results.length).toBeGreaterThan(0)
+        expect(results.length).toBeGreaterThan(0)
         results.forEach(function (result) {
           let reg = RegExp(data.regexp)
           expect(reg.test(result)).toBeTruthy(`act: ${result}, exp: ${data.query}`)
@@ -78,13 +78,15 @@ describe('Test with Page Object', function () {
     using(language, function (lang) {
       it('should translate properly', async function () {
         translatePage = new googleTranslatePage(driver)
-        await translatePage.open()
+
         let dictionary = require(path.replace('*', lang.from))
-        for (let i = 0; i < dictionary.length; i++) {
+        using(dictionary, async function (word) {
+          await translatePage.open()
           await translatePage.chooseLangs(lang.fao, lang.tao)
-          await translatePage.typeWordAndSubmit(dictionary[i].from)
-          expect(translatePage.getTranslation()).toEqual(dictionary[i].to)
-        }
+          await translatePage.typeWordAndSubmit(word.from)
+          let translation = await translatePage.getTranslation()
+          expect(translation).toEqual(word.to, `Actual: ${translation}, expected: ${word.to}`)
+        })
       })
     })
   })
