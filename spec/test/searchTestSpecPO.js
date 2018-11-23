@@ -25,7 +25,7 @@ describe('Test with Page Object', function () {
     let googleBasePage, googleResultsPage
 
     using(provider, function (data) {
-      it('Results quantity Test', async function () {
+      it('should have required amount of results', async function () {
         googleBasePage = new googleSearchPage(driver)
 
         await googleBasePage.open()
@@ -38,7 +38,7 @@ describe('Test with Page Object', function () {
         console.log(`Query: ${data.query}. There is about ${number} results.`)
       })
 
-      it('Relevance of results Test', async function () {
+      it('should be relevant', async function () {
         let results = await googleResultsPage.getSearchResults()
         await expect(results.length).toBeGreaterThan(0)
         results.forEach(function (result) {
@@ -57,10 +57,10 @@ describe('Test with Page Object', function () {
     })
   })
 
-  xdescribe('Google Mail', function () {
+  xdescribe('Google Mailbox', function () {
     let googleLogin, googleMailbox
 
-    it('mailBox should open', async function () {
+    it('should open', async function () {
       googleLogin = new googleLoginPage(driver)
       await googleLogin.openLoginPage()
       await googleLogin.typeLogin(mailData.login)
