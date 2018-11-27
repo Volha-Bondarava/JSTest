@@ -1,7 +1,7 @@
 let using = require('jasmine-data-provider')
 let provider = require('../properties/data.json')
-let googlePage = require('../protractor/googleSearchPage.js')
-let resultsPage = require('../protractor/googleSearchResultsPage.js')
+let googlePage = require('../pageObject/protractor/googleSearchPage.js')
+let resultsPage = require('../pageObject/protractor/googleSearchResultsPage.js')
 
 describe('Search results page', function () {
 
