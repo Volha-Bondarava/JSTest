@@ -27,7 +27,7 @@ class googleSearchResultsPage extends basePage {
   };
 
   async navigateToNextPage () {
-    this.url = await this.driver.getElementHref(this.nextPageLink)
+    this.url = await this.driver.getElementAttribute(this.nextPageLink, 'href')
     return this.open()
   }
 

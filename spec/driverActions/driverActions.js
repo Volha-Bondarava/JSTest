@@ -11,7 +11,7 @@ class driverActions {
   }
 
   async waitForElementLocated (locator, timeout = 15000) {
-    return await this.driver.wait(until.elementLocated(locator), timeout, `Can't locate element ${locator}`)
+    return await this.driver.wait(until.elementLocated(locator), timeout, `Can't locate the element ${locator}`)
   }
 
   async waitElementIsVisible (locator, timeout = 15000) {
@@ -28,7 +28,7 @@ class driverActions {
   }
 
   async click (locator) {
-    return await this.driver.findElement(locator).click()
+    return this.driver.findElement(locator).click()
   }
 
   async type (locator, text) {
@@ -41,10 +41,6 @@ class driverActions {
 
   async getElementText (locator) {
     return await this.driver.findElement(locator).getText()
-  }
-
-  async getElementHref (locator) {
-    return await this.driver.findElement(locator).getAttribute('href')
   }
 
   async getElementAttribute (locator, attribute) {
