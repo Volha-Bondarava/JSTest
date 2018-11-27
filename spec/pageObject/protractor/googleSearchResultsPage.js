@@ -1,4 +1,4 @@
-const {browser, element, by} = require('protractor')
+const {element, by} = require('protractor')
 
 let googleSearchResultsPage = function () {
   let resultStats = element(by.id('resultStats'))

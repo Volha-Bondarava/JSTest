@@ -1,5 +1,4 @@
 const {browser, element, by} = require('protractor')
-const {Key} = require('selenium-webdriver')
 
 let googleSearchPage = function () {
   this.url = 'http://google.by'
@@ -12,7 +11,7 @@ let googleSearchPage = function () {
 
   this.typeSearchQuery = function (text) {
     searchField.sendKeys(text)
-    searchField.sendKeys(Key.RETURN)
+    searchField.sendKeys(protractor.Key.RETURN)
   }
 }
 
