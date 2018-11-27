@@ -1,3 +1,5 @@
+"use strict"
+
 let driverActions = require('../driverActions/driverActions')
 
 class BasePage {

@@ -1,3 +1,5 @@
+"use strict"
+
 let webdriver = require('selenium-webdriver')
 let basePage = require('.//basePage.js')
 

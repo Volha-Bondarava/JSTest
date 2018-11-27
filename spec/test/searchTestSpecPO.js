@@ -1,3 +1,5 @@
+"use strict"
+
 let using = require('jasmine-data-provider')
 let configuration = require('../support/jasmine')
 let provider = require('../properties/data.json')

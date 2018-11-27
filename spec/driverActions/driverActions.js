@@ -1,3 +1,5 @@
+'use strict'
+
 const {until, Key} = require('selenium-webdriver')
 
 class driverActions {
@@ -19,6 +21,11 @@ class driverActions {
     return await this.driver.wait(until.elementIsVisible(element), timeout, `Element ${element} is not visible`)
   }
 
+  async waitForPageLoad (link) {
+    this.driver.wait(this.driver.getCurrentUrl, )
+  }
+
+
   async find (locator) {
     return await this.driver.findElement(locator)
   }
@@ -28,7 +35,7 @@ class driverActions {
   }
 
   async click (locator) {
-    return this.driver.findElement(locator).click()
+    return await this.driver.findElement(locator).click()
   }
 
   async type (locator, text) {

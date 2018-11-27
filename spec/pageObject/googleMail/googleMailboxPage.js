@@ -1,3 +1,5 @@
+'use strict'
+
 let basePage = require('../basePage.js')
 let webdriver = require('selenium-webdriver')
 
@@ -10,6 +12,7 @@ class googleMailboxPage extends basePage {
 
   async findMessage (messageText) {
     await this.driver.typeAndSubmit(this.searchMailField, messageText)
+    await this.driver.waitForPageLoad()
     let sender = await this.driver.getElementAttribute(this.senderInfo, 'email')
     return sender
   }
