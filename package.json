@@ -6,7 +6,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "chromedriver": "^2.43.1",
+    "chromedriver": "^2.44.0",
     "grunt": "^1.0.3",
     "grunt-run": "^0.8.1",
     "gulp": "^4.0.0",
