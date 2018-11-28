@@ -6,12 +6,12 @@ let googleSearchResultsPage = function () {
 
   this.getNumberOfSearchResults = async function () {
     let text = await resultStats.getText()
-    text = text.substring(0, text.length - 11)
+    text = text.trim().substring(0, text.length - 13)
     return parseInt(text.replace(/\D+/g, ''))
   }
 
   this.getSearchResultsHeads = async function () {
-    await searchResults.map(async function(result) {
+    await searchResults.map(async function (result) {
       return await result.getText()
     })
     return searchResults
