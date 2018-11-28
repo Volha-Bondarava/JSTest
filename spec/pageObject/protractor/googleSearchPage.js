@@ -1,4 +1,4 @@
-const {browser, element, by} = require('protractor')
+const {browser, element, by, protractor} = require('protractor')
 
 let googleSearchPage = function () {
   this.url = 'http://google.by'
