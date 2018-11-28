@@ -6,8 +6,9 @@ let googleSearchResultsPage = function () {
 
   this.getNumberOfSearchResults = async function () {
     let text = await resultStats.getText()
-    text = text.trim().substring(0, text.length - 13)
-    return parseInt(text.replace(/\D+/g, ''))
+    let time = await resultStats.element(by.tagName('nobr')).getText()
+    text = text.replace(time, '').replace(/\D+/g, '')
+    return parseInt(text)
   }
 
   this.getSearchResultsHeads = async function () {
