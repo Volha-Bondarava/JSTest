@@ -11,7 +11,7 @@ describe('Search results page', function () {
       googlePage.typeSearchQuery(data.query)
       let number = await resultsPage.getNumberOfSearchResults()
       expect(number).toBeGreaterThanOrEqual(data.numberOfResults)
-      console.log(`Query: ${data.query}. There is about ${number} results.`)
+      console.log(`Query: ${data.query}. There is about ${number.toString().replace(/(\d{1,3})(?=(?:\d{3})+$)/g, '$1 ')} results.`)
     })
 
     it('should have relevant results', async function () {

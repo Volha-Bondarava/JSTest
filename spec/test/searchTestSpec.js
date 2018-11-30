@@ -33,7 +33,7 @@ describe('Google Search test without Page Object', function () {
       text = text.substring(0, text.length - 11)
       let number = parseInt(text.replace(/\D+/g, ''))
       await expect(number).toBeGreaterThan(data.numberOfResults)
-      console.log(`Запрос: ${data.query}. Количество результатов: ${number}`)
+      console.log(`Запрос: ${data.query}. Количество результатов: ${number.toString().replace(/(\d{1,3})(?=(?:\d{3})+$)/g, '$1 ')}`)
     })
 
     it('should have relevant results', async function () {

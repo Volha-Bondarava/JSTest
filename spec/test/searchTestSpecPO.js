@@ -34,7 +34,7 @@ describe('Test with Page Object', function () {
 
         let number = await googleResultsPage.getQuantityOfSearchResults()
         expect(number).toBeGreaterThan(data.numberOfResults)
-        console.log(`Query: ${data.query}. There is about ${number} results.`)
+        console.log(`Query: ${data.query}. There is about ${number.toString().replace(/(\d{1,3})(?=(?:\d{3})+$)/g, '$1 ')} results.`)
       })
 
       it('should be relevant', async function () {
